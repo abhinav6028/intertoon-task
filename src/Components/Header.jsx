@@ -60,14 +60,14 @@ export default function Header() {
 
     useEffect(() => {
         fetchData();
-    }, []); // Fetch data initially when component mounts
+    }, []);
 
     const handleRefetchData = () => {
-        setLoading(true); // Set loading state to true while fetching
-        fetchData(); // Call fetchData function to refetch data
+        setLoading(true);
+        fetchData();
     };
 
-    console.log("????????????????????from header", data);
+
 
     return (
         <Grid container sx={{

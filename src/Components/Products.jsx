@@ -9,8 +9,6 @@ export default function Products({ fetchedData }) {
 
     const pathName = useLocation()
 
-    console.log("????????????", pathName?.pathname);
-
     return (
         <Grid container sx={{ justifyContent: 'center' }}>
             <Grid container xs={11.5} sm={11.5} md={11.5} lg={11.5} sx={{
@@ -19,7 +17,6 @@ export default function Products({ fetchedData }) {
             }}>
                 {
                     fetchedData?.map((data, index) =>
-
                         <Grid container xs={5.5} sm={3.5} md={2.8} lg={2.1} sx={{
                             bgcolor: '', justifyContent: "center", my: 2,
                             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',

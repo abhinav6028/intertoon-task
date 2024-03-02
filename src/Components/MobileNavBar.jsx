@@ -32,15 +32,15 @@ export default function MobileNavBar() {
 
     return (
         <Grid container sx={{
-            display: { xs: "block", md: "none" }, overflow: 'none'
-
+            display: { xs: "block", md: "none" }, overflow: 'none',
+            bgcolor: "#0a367f"
         }}>
 
             <Grid container sx={{
                 width: "100%", display: 'flex',
                 justifyContent: "space-between",
                 alignItems: "center",
-                py: 1,
+                py: 2,
                 position: "fixed",
                 zIndex: "110", top: "0", left: "0",
                 bgcolor: "#0a367f"
@@ -72,7 +72,7 @@ export default function MobileNavBar() {
 
                 </Grid>
 
-                <Grid container xs={4} sm={4} sx={{ bgcolor: '', justifyContent: 'end' }}>
+                <Grid container xs={5} sm={4} sx={{ bgcolor: '', justifyContent: 'end' }}>
 
                     <Badge badgeContent={4} color="primary" sx={{ bgcolor: '', mr: { xs: 2, sm: 4 }, cursor: 'pointer' }}>
                         <FavoriteBorderIcon color="action" sx={{ fontSize: 30, color: '#FFF' }} />
@@ -80,34 +80,17 @@ export default function MobileNavBar() {
 
                     <Badge
                         onClick={() => navigate('/cart')}
-                        badgeContent={10} color="primary" sx={{ bgcolor: '', mr: { xs: 2, sm: 4 }, cursor: 'pointer' }}>
+                        badgeContent={10} color="primary" sx={{ bgcolor: '', mr: { xs: 1, sm: 4 }, cursor: 'pointer' }}>
                         <ShoppingCartIcon color="red" sx={{ fontSize: 30, color: '#FFF' }} />
                     </Badge>
 
-                    <MoreVertIcon sx={{ fontSize: 30, color: '#FFF', cursor: 'pointer', mr: { xs: 2, sm: 4 } }} />
+                    <MoreVertIcon sx={{ fontSize: 30, color: '#FFF', cursor: 'pointer', mr: { xs: 1, sm: 4 } }} />
 
                 </Grid>
 
 
             </Grid>
 
-
-
         </Grid >
     )
 }
-
-
-// <Box sx={{ ml: 10 }}>
-
-// <Badge badgeContent={4} color="primary" sx={{ bgcolor: '', mr: { md: 2, lg: 4 }, cursor: 'pointer' }}>
-//     <FavoriteBorderIcon color="action" sx={{ fontSize: 30, color: '#FFF' }} />
-// </Badge>
-
-// <Badge
-//     onClick={() => navigate('/cart')}
-//     badgeContent={10} color="primary" sx={{ bgcolor: '', ml: 3, cursor: 'pointer' }}>
-//     <ShoppingCartIcon color="red" sx={{ fontSize: 30, color: '#FFF' }} />
-// </Badge>
-
-// </Box>
