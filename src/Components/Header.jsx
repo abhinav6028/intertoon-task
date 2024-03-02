@@ -10,30 +10,68 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
 
+    // const navigate = useNavigate()
+
+    // const [data, setData] = useState();
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState(null);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await axios.get('https://mvecdemo.intertoons.com/mvecomapi/api/v2/Order/CartList?cusId=18&guestId&pincode=8');
+    //             setData(response);
+    //         } catch (error) {
+    //             setError(error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
+
+    // useEffect(() => {
+    //     fetchData();
+    // }, []); // Fetch data initially when component mounts
+
+    // const handleRefetchData = () => {
+    //     setLoading(true); // Set loading state to true while fetching
+    //     fetchData(); // Call fetchData function to refetch data
+    // };  
+
+
     const navigate = useNavigate()
 
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('https://mvecdemo.intertoons.com/mvecomapi/api/v2/Order/CartList?cusId=18&guestId&pincode=8');
-                setData(response);
-            } catch (error) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('https://mvecdemo.intertoons.com/mvecomapi/api/v2/Order/CartList?cusId=18&guestId&pincode=8');
+            setData(response.data?.Data?.cartList);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchData();
-    }, []);
+    }, []); // Fetch data initially when component mounts
+
+    const handleRefetchData = () => {
+        setLoading(true); // Set loading state to true while fetching
+        fetchData(); // Call fetchData function to refetch data
+    };
+
+    console.log("????????????????????from header", data);
 
     return (
         <Grid container sx={{
-            bgcolor: { sm: 'blue', md: 'green', lg: '#0a367f' },
+            bgcolor: '#0a367f',
             justifyContent: 'center',
             py: 3,
             display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex' },
@@ -102,7 +140,7 @@ export default function Header() {
 
                         <Badge
                             onClick={() => navigate('/cart')}
-                            badgeContent={data?.data?.Data?.cartList?.length} color="primary" sx={{ bgcolor: '', mr: { md: 2, lg: 4 }, cursor: 'pointer' }}>
+                            badgeContent={data?.length} color="primary" sx={{ bgcolor: '', mr: { md: 2, lg: 4 }, cursor: 'pointer' }}>
                             <ShoppingCartIcon color="red" sx={{ fontSize: 30, color: '#FFF' }} />
                         </Badge>
 

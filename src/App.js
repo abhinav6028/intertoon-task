@@ -38,6 +38,7 @@ function App() {
     <Grid container>
 
       <Header />
+
       <MobileNavBar />
 
       <Routes>
