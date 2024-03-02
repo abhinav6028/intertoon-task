@@ -1,0 +1,1 @@
+export const BASE_URL = "https://mvecdemo.intertoons.com/mvecomapi/api/v2"
