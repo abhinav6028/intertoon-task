@@ -1,5 +1,5 @@
 import { Grid, Box, Typography, Badge } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import axios from 'axios';
 
 
 export default function MobileNavBar() {
@@ -16,19 +17,36 @@ export default function MobileNavBar() {
 
     const [menu, setMenu] = React.useState(false)
 
-    const navbarItems = [
-        { name: 'HOME', path: '/' },
-        { name: 'PROFILE', path: '/profile' },
-        { name: 'REPORTS', path: '/reports' },
-        { name: 'INSIGHT', path: '/insight' },
-    ]
-
 
     const MenuBar = () => {
 
         setMenu(!menu)
 
     }
+
+    const [data, setData] = useState();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('https://mvecdemo.intertoons.com/mvecomapi/api/v2/Order/CartList?cusId=18&guestId&pincode=8');
+            setData(response.data?.Data?.cartList);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const handleRefetchData = () => {
+        setLoading(true);
+        fetchData();
+    };
 
     return (
         <Grid container sx={{
@@ -80,7 +98,7 @@ export default function MobileNavBar() {
 
                     <Badge
                         onClick={() => navigate('/cart')}
-                        badgeContent={10} color="primary" sx={{ bgcolor: '', mr: { xs: 1, sm: 4 }, cursor: 'pointer' }}>
+                        badgeContent={data?.length} color="primary" sx={{ bgcolor: '', mr: { xs: 1, sm: 4 }, cursor: 'pointer' }}>
                         <ShoppingCartIcon color="red" sx={{ fontSize: 30, color: '#FFF' }} />
                     </Badge>
 
