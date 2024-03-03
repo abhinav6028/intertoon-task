@@ -16,7 +16,7 @@ export default function HomePage({ fetchedData }) {
         const fetchData = async () => {
             try {
                 const response = await axios.get('https://mvecdemo.intertoons.com/mvecomapi/api/v2/PopularProduct?custId=18&guestId=');
-                setData(response.data?.Data);
+                setData(response?.data?.Data);
             } catch (error) {
                 setError(error);
             } finally {

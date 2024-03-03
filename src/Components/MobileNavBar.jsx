@@ -106,7 +106,6 @@ export default function MobileNavBar() {
 
                 </Grid>
 
-
             </Grid>
 
         </Grid >
